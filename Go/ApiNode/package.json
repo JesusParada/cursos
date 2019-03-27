@@ -1,0 +1,11 @@
+{
+  "name": "api_node",
+  "version": "1.0.0",
+  "description": "Api de Node",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jesus Parada",
+  "license": "MIT"
+}

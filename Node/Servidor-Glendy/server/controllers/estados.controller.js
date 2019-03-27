@@ -1,0 +1,37 @@
+var estadosController = {
+    "Aguascalientes":"AG",
+            "Baja California": "BC",
+            "Baja California Sur":"BS",
+            "Campeche":"CM",
+            "Chiapas":"CS",
+            "Chihuahua":"CH",
+            "Ciudad de México":"CX",
+            "Coahuila de Zaragoza":"CO",
+            "Colima":"CL",
+            "Durango":"DG",
+            "Guanajuato":"GT",
+            "Guerrero":"GR",
+            "Hidalgo":"HG",
+            "Jalisco":"JC",
+            "México":"EM",
+            "Michoacán de Ocampo":"MI",
+            "Morelos":"MO",
+            "Nayarit":"NA",
+            "Nuevo León":"NL",
+            "Oaxaca":"OA",
+            "Puebla":"PU",
+            "Querétaro":"QT",
+            "Quintana Roo":"QR",
+            "San Luis Potosí":"SL",
+            "Sinaloa":"SI",
+            "Sonora":"SO",
+            "Tabasco":"TB",
+            "Tamaulipas":"TM",
+            "Tlaxcala":"TL",
+            "Veracruz de Ignacio de la Llave":"VE",
+            "Yucatán":"YU",
+            "Zacatecas":"ZS"
+}
+
+
+module.exports = estadosController;
