@@ -1,0 +1,21 @@
+<h1 class="titulo-principal">Productos</h1>
+
+<mat-card class="contenedor-grande-centrado fondo">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>Glendy</mat-card-title>
+        <mat-card-subtitle>Aplicación</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+         <p>La aplicación de Glendy es gratuita, pero necesita
+            del material didáctico para funcionar, puedes descargarla dando clic al botón de descarga</p>
+        </mat-card-content>
+        <mat-card-actions align="end">
+            <a href="http://localhost:3000/files/glendy.v.5.apk">
+                <button class="btn" mat-raised-button >Descargar</button></a>
+        </mat-card-actions>
+      </mat-card>
+<div class="separador"></div>
+<div class="contenedor-grande-centrado">
+    <app-producto *ngFor= "let producto of productosService.productos"  [producto]= "producto"></app-producto>
+</div>

@@ -1,0 +1,37 @@
+  .example-spacer {
+    flex: 1 1 auto;
+  }
+  .sidenav-container {
+    height: 100%;
+  }
+  
+  .sidenav {
+    width: 200px;
+  }
+
+  #margen-inferior{
+    height: 150px;
+  }
+  
+  .mat-toolbar.mat-primary {
+    position: sticky;
+    top: 0;
+  }
+  .example-button-row button,
+  .example-button-row a {
+    margin-right: 8px;
+  }
+
+  .imagen-menu {
+    width: 90%;
+  }
+
+  .titulo{
+    font-family: 'Chewy', cursive;
+    font-size: 2em;
+  }
+  .nombre{
+    /*font-family: 'Fredoka One', cursive;
+    font-family: 'Overlock', cursive;*/
+    font-family: 'Rancho', cursive;
+    }

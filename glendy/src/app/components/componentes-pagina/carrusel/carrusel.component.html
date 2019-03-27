@@ -1,0 +1,30 @@
+<!--
+<div id="container">
+  <div ng2-carouselamos class="slides-wrapper"
+    [items]= "items"
+    [width]="900"
+    [$prev]="prev"
+    [$next]="next"
+    [$item]="item">
+  </div>
+  <ng-template #prev>
+      <mat-icon class ="example-icon" id="left">keyboard_arrow_left</mat-icon>
+  </ng-template>
+  <ng-template #next>
+      <mat-icon class ="example-icon" id="right">keyboard_arrow_right</mat-icon>
+  </ng-template>
+  <ng-template #item let-item let-i="index">
+      <div class="items">
+        <img src="{{item.name}}">
+      </div>
+  </ng-template>
+</div>
+-->
+<ngb-carousel *ngIf="items">
+    <ng-template *ngFor="let item of items" ngbSlide>
+        <img [src]="item.name">
+        <div class="carousel-caption">
+          <h3>{{item.leyenda}}</h3>
+        </div>
+      </ng-template>
+  </ngb-carousel>

@@ -1,0 +1,21 @@
+<h2 mat-dialog-title>Responder Comentario</h2>
+<mat-dialog-content class="mat-typography">
+<div class="example-container">
+    <form class="example-form" *ngIf="data != undefined">
+      <mat-form-field >
+        <input matInput placeholder="Nombre de Usuario" [value] ="data.usuario.nombre_usuario">
+      </mat-form-field>
+      <mat-form-field>
+        <textarea matInput placeholder="Comentario" [value] ="data.texto" disabled= "true"></textarea>
+      </mat-form-field>
+      <mat-form-field>
+        <textarea matInput placeholder="Respuesta"  [(ngModel)] = "data.respuesta" name="respuesta" ></textarea>
+      </mat-form-field>
+      <hr>
+      </form>
+      <mat-dialog-actions>
+        <button mat-raised-button color="warn" mat-dialog-close>Cancelar</button>
+        <button mat-raised-button color="primary" [mat-dialog-close]="data" >Guardar Cambios</button>
+      </mat-dialog-actions>
+    </div>
+  </mat-dialog-content>

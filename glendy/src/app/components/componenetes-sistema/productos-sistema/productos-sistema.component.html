@@ -1,0 +1,67 @@
+<div class="container" *ngIf="visible">
+  <mat-card class="contenedor-grande-centrado fondo-tarjetas">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>{{producto.nombre_producto}}</mat-card-title>
+      <mat-card-subtitle>{{producto.tipo_producto}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <div class="img">
+            <img [src]="'http://localhost:3000/' + producto.imagenes[0]" >
+        </div>
+      <form>
+      <mat-form-field class="width-100">
+          <input matInput type="text" placeholder="Descripción" disabled="true" [value]="producto.descripcion">
+      </mat-form-field>
+      <mat-form-field class="width-33" >
+          <input matInput type="text" placeholder="Precio Venta" disabled="true" [value]="'$ ' + producto.precio_venta">
+      </mat-form-field >
+      <mat-form-field class="width-33" >
+          <input matInput type="text" placeholder="Precio Costo" disabled="true" [value]="'$ '+ producto.precio_costo">
+      </mat-form-field>
+      <mat-form-field class="width-33">
+          <input matInput type="text" placeholder="Existencia" disabled="true" [value]=" producto.existencia">
+      </mat-form-field>
+      <mat-form-field class="width-25">
+          <input matInput type="number" placeholder="Largo" disabled="true" [value] ="producto.largo">
+          <span matSuffix> cm</span>
+      </mat-form-field>
+      <mat-form-field class="width-25">
+          <input matInput type="number" placeholder="Alto" disabled="true" [value] ="producto.alto">
+          <span matSuffix> cm</span>
+      </mat-form-field>
+      <mat-form-field class="width-25">
+          <input matInput type="number" placeholder="Ancho" disabled="true"  [value] ="producto.ancho">
+          <span matSuffix> cm</span>
+      </mat-form-field>
+      <mat-form-field class="width-25">
+          <input matInput type="number" placeholder="Peso" disabled="true"  [value] ="producto.peso">
+          <span matSuffix> kg</span>
+      </mat-form-field>
+      <mat-form-field class="width-100">
+          <mat-chip-list #chipList>
+            <mat-chip *ngFor="let contenido of producto.contenido" selectable="false"
+                     removable="false">
+              {{contenido}}
+              <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+            </mat-chip>
+            <input placeholder="Contenido"
+                   [matChipInputFor]="chipList"
+                   disabled="true">
+          </mat-chip-list>
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+    <div>
+        <mat-card-actions align="end">
+          <button mat-icon-button (click)="editar()" color="primary">
+            <mat-icon >edit</mat-icon>
+          </button>
+          <button mat-icon-button (click)="remove()" color="warn">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-card-actions>
+    </div>
+  </mat-card>
+  <div class="separador"></div>
+</div>

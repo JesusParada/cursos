@@ -1,0 +1,29 @@
+.example-card{
+  width: 100%;
+  margin: 4px;
+}
+  
+  .example-header-image {
+    background-image: url("../../../../assets/imagenes/logo.jpg");
+    background-size: cover;
+  }
+
+  .example-form {
+    /*min-width: 150px;
+    max-width: 500px;*/
+
+
+    width: 95%;
+    height: 95%;
+  }
+  
+  .example-full-width {
+    width: 95%;
+  }
+
+  .botonera{
+    margin: 2px;
+  }
+  .texto-ch{
+    font-size: 0.8em;
+  }

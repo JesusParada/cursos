@@ -1,0 +1,31 @@
+<h1 class="titulo-principal">Comunidad</h1>
+<div class="zona-nuevo-comentario" color="primary">
+    <form class="width-100" [formGroup] = "datos_comentario">
+        <mat-form-field class="width-100">
+            <mat-select placeholder="Tipo de comentario" formControlName="tipo">
+              <mat-option value="Experiencias">Experiencias</mat-option>
+              <mat-option value="Dudas">Dudas y preguntas</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field class="width-100">
+          <textarea class="texto-simple" type="text" matInput formControlName = "texto"
+          placeholder="Agregue su comentario"></textarea>
+        </mat-form-field>
+    </form>
+    <button mat-raised-button (click)="reset()" color="warn">Cancelar</button>  
+    <button mat-raised-button (click)="agregarComentario()" color="primary">Enviar</button>
+</div>
+<div class="zona-comentarios">
+    <mat-tab-group backgroundColor="accent" dynamicHeight>
+        <mat-tab label="Dudas y Preguntas">
+          <div class="mat-elevation-z4">
+            <app-comentarios *ngFor="let comentario of dudas |async" [comentario]="comentario"></app-comentarios>
+          </div>
+        </mat-tab>
+        <mat-tab label="Experiencias">
+            <div class="mat-elevation-z4">
+                <app-comentarios *ngFor="let comentario of experiencias |async" [comentario]="comentario"></app-comentarios>
+            </div>
+        </mat-tab>
+    </mat-tab-group>
+</div>

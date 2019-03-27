@@ -1,0 +1,95 @@
+<mat-tab-group dynamicHeight color="accent" backgroundColor = "accent">
+  <mat-tab>
+    <ng-template mat-tab-label><mat-icon class = "example-tab-icon">card_giftcard</mat-icon> Productos
+    </ng-template>
+    <div>
+      <mat-tab-group dynamicHeight>
+        <mat-tab label="Lista de Productos">
+          <div class="separador-sistema" ></div>
+          <div class="example-small-box">
+            <app-productos-sistema *ngFor = "let producto of productosService.productos" [producto]="producto" ></app-productos-sistema>
+          </div>
+        </mat-tab>
+        <mat-tab label="Agregar Producto">
+          <div class="separador-sistema" ></div>
+          <div class="example-large-box mat-elevation-z4">
+            <app-nuevo-producto></app-nuevo-producto>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  </mat-tab>
+  
+  <mat-tab>
+    <ng-template mat-tab-label><mat-icon class="example-tab-icon">person_add</mat-icon> Usuarios
+    </ng-template>
+    <mat-tab-group dynamicHeight>
+      <mat-tab label="Clientes">
+        <div class="separador-sistema" ></div>
+        <div class="mat-elevation-z4">
+          <app-usuarios [usuarios] = "clientes | async" (Acciones)="actualizarUsuarios()"></app-usuarios>
+        </div>
+      </mat-tab>
+      <mat-tab label="Empleados">
+        <div class="separador-sistema" ></div>
+        <div class="mat-elevation-z4">
+          <app-usuarios [usuarios] = "empleados | async" (Acciones)="actualizarUsuarios()"></app-usuarios>
+        </div>
+      </mat-tab>
+      <mat-tab label="Agregar Empleado">
+        <div class="separador-sistema" ></div>
+        <app-nuevo-empleado (Agregado)="actualizarUsuarios()"></app-nuevo-empleado>
+      </mat-tab>
+    </mat-tab-group> 
+  </mat-tab>
+
+  <mat-tab>
+    <ng-template mat-tab-label><mat-icon class="example-tab-icon">attach_money</mat-icon> Ventas
+    </ng-template>
+    <mat-tab-group  dynamicHeight>
+      <mat-tab label="Todas las Ventas">
+        <div class="separador-sistema" ></div>
+        <div>
+          <app-ventas-totales [ventas] = "ventas | async" ></app-ventas-totales>
+        </div>
+      </mat-tab>
+      <mat-tab label="Entrega de ventas">
+        <div class="separador-sistema" ></div>
+        <div class="mat-elevation-z4">
+          <app-entrega-ventas [ventas] = "ventasSinEnviar | async" (Acciones)="actualizarVentas()"></app-entrega-ventas>
+        </div>
+      </mat-tab>
+      <mat-tab label="Ventas por Producto">
+        <div class="separador-sistema" ></div>
+        <div class="mat-elevation-z4">
+          <app-ventas-productos [ventas] = "ventas | async"></app-ventas-productos>
+        </div>
+      </mat-tab>
+      <mat-tab label="Ventas por Mes">
+        <div class="separador-sistema" ></div>
+        <div class="mat-elevation-z4">
+          <app-ventas-mes [ventas] = "ventas | async"></app-ventas-mes>
+        </div>
+      </mat-tab>
+    </mat-tab-group>       
+  </mat-tab>
+
+  <mat-tab>
+    <ng-template mat-tab-label><mat-icon class="example-tab-icon">message</mat-icon> Comentarios
+    </ng-template>
+    <mat-tab-group  dynamicHeight>
+        <mat-tab label="Dudas y Preguntas">
+          <div class="separador-sistema" ></div>
+          <div class="mat-elevation-z4">
+            <app-comentarios-sistema [comentarios] = "dudas | async" (Acciones)="actualizarComentarios()"></app-comentarios-sistema>
+          </div>
+        </mat-tab>
+        <mat-tab label="Experiencias">
+          <div class="separador-sistema" ></div>
+          <div class="mat-elevation-z4">
+            <app-comentarios-sistema [comentarios] = "experiencias | async" (Acciones)="actualizarComentarios()"></app-comentarios-sistema>
+          </div>
+        </mat-tab>
+      </mat-tab-group> 
+  </mat-tab>
+</mat-tab-group>

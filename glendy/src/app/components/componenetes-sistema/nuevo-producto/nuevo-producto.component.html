@@ -1,0 +1,76 @@
+<div class="contenedor-grande-centrado">
+  <form class="example-form" [formGroup] = "producto_data">
+    <mat-form-field class="width-75" >
+      <input matInput placeholder="Nombre del producto" formControlName="nombre">
+    </mat-form-field>
+    <mat-form-field class="width-25">
+        <mat-select placeholder="Tipo de producto" formControlName="tipo">
+          <mat-option value="Paquete">Paquete</mat-option>
+          <mat-option value="Complemento">Complemento</mat-option>
+          <mat-option value="Repuesto">Repuesto</mat-option>
+        </mat-select>
+      </mat-form-field>
+    <mat-form-field class="width-100">
+      <input matInput placeholder="Descripción" formControlName="descripcion">
+    </mat-form-field>
+    <mat-form-field class="example-chip-list">
+        <mat-chip-list #chipList>
+          <mat-chip *ngFor="let contenido of listaContenido" [selectable]="selectable"
+                   [removable]="removable" (removed)="remove(contenido)">
+            {{contenido}}
+            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+          </mat-chip>
+          <input placeholder="Contenido"
+                 [matChipInputFor]="chipList"
+                 [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                 [matChipInputAddOnBlur]="addOnBlur"
+                 (matChipInputTokenEnd)="add($event)"
+                 formControlName="contenido">
+        </mat-chip-list>
+      </mat-form-field>
+    <mat-form-field class="width-33">
+        <input matInput type="number" placeholder="Precio Venta" class="example-right-align" formControlName="precio_venta">
+        <span matPrefix>$&nbsp;</span>
+        <span matSuffix>.00</span>
+    </mat-form-field>
+    <mat-form-field class="width-33">
+        <input matInput type="number" placeholder="Precio Costo" class="example-right-align" formControlName="precio_costo">
+        <span matPrefix>$&nbsp;</span>
+        <span matSuffix>.00</span>
+    </mat-form-field>
+    <mat-form-field class="width-33">
+        <input matInput type="number" placeholder="Existencia" class="example-right-align" formControlName="existencia">
+    </mat-form-field>
+    <mat-form-field class="width-25">
+        <input matInput type="number" placeholder="Largo" class="example-right-align" formControlName="largo">
+        <span matSuffix> cm</span>
+    </mat-form-field>
+    <mat-form-field class="width-25">
+        <input matInput type="number" placeholder="Alto" class="example-right-align" formControlName="alto">
+        <span matSuffix> cm</span>
+    </mat-form-field>
+    <mat-form-field class="width-25">
+        <input matInput type="number" placeholder="Ancho" class="example-right-align" formControlName="ancho">
+        <span matSuffix> cm</span>
+    </mat-form-field>
+    <mat-form-field class="width-25">
+        <input matInput type="number" placeholder="Peso" class="example-right-align" formControlName="peso">
+        <span matSuffix> kg</span>
+    </mat-form-field>
+    <mat-form-field class="width-100">
+        <input matInput type="url" placeholder="Url Video" class="example-right-align" formControlName="video">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput type="text" id="labelProducto" placeholder="Imagen del producto" disabled="true" >
+    </mat-form-field>
+    <div class="selecciona-imagen width-100">
+      <button mat-raised-button color="primary" onclick="document.getElementById('fileToUpload').click()">Selecciona una Imagen</button>    
+      <input id="fileToUpload" type="file" name="file" accept="image/*" (change)="cargarArchivo($event)" style="display:none;">
+    </div>
+    <hr>
+    <button mat-raised-button color="primary" (click)="guardar($event)" [disabled]="producto_data.invalid">Guardar Producto</button>
+    
+    </form>
+  </div>
+
+

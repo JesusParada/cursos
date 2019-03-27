@@ -1,0 +1,34 @@
+.example-card {
+    width: 90%;
+    align-content: center;
+  }
+
+.example-card img{
+    width: 60%;
+    height: 30%;
+    
+}
+
+.example-header-image {
+  background-image: url("./logo.jpg");
+  background-size: cover;
+}
+
+mat-card-content{
+  font-size: 1em;
+}
+
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.texto-boton {
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+
+.align-right{
+  float: right;
+}

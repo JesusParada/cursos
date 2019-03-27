@@ -1,0 +1,39 @@
+<mat-form-field class = "width-25">
+  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtrar">
+</mat-form-field>
+  
+  <div class="mat-elevation-z8 tablas">
+    <table mat-table class="fondo-tablas" [dataSource]="dataSource" matSort>
+      <ng-container matColumnDef="_id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+        <td mat-cell *matCellDef="let row"> {{row._id}} </td>
+      </ng-container>
+      <ng-container matColumnDef="total_articulos">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Total Artículos </th>
+        <td mat-cell *matCellDef="let row"> {{row.productos.length}} </td>
+      </ng-container>
+      <ng-container matColumnDef="subtotal">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Subtotal </th>
+        <td mat-cell *matCellDef="let row"> {{subtotal(row) | currency}} </td>
+      </ng-container>
+      <ng-container matColumnDef="costo_envio">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Costo Envío </th>
+        <td mat-cell *matCellDef="let row" > {{row.costo_envio |currency}} </td>
+      </ng-container>
+      <ng-container matColumnDef="total">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Total </th>
+        <td mat-cell *matCellDef="let row"> {{total(row) | currency}} </td>
+      </ng-container>
+      <ng-container matColumnDef="entregado">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> entregado </th>
+          <td mat-cell *matCellDef="let row"><mat-checkbox [checked]="row.entregado" disabled="true"></mat-checkbox> </td>
+        </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+      </tr>
+    </table>
+  
+    <mat-paginator class="fondo-tablas" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+  </div>
+  

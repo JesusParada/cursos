@@ -1,0 +1,61 @@
+<mat-form-field class="width-25">
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtrar">
+  </mat-form-field>
+  
+  <div class="mat-elevation-z8 tablas">
+    <table class="fondo-tablas" mat-table [dataSource]="dataSource" matSort>
+      <ng-container matColumnDef="nombre_receptor">
+        <th class="td-m" mat-header-cell *matHeaderCellDef mat-sort-header> Receptor  </th>
+        <td class="td-m" mat-cell *matCellDef="let row"> {{row.nombre_receptor}} </td>
+      </ng-container>
+      <ng-container matColumnDef="paqueteria">
+          <th class="td-m" mat-header-cell *matHeaderCellDef mat-sort-header> Paquetería  </th>
+          <td class="td-m" mat-cell *matCellDef="let row"> {{row.paqueteria}} </td>
+      </ng-container>
+      <ng-container matColumnDef="tipo_envio">
+        <th class="td-m" mat-header-cell *matHeaderCellDef mat-sort-header> Tipo Envío  </th>
+        <td class="td-m" mat-cell *matCellDef="let row"> {{row.tipo_envio}} </td>
+      </ng-container>
+      <ng-container matColumnDef="articulos">
+        <th class="td-g" mat-header-cell *matHeaderCellDef> Artículos </th>
+        <td class="td-g" mat-cell *matCellDef="let row"><li *ngFor="let producto of row.productos">{{producto.producto.nombre_producto}}</li> </td>
+      </ng-container>
+      <ng-container matColumnDef="cantidad">
+        <th class="td-ch" mat-header-cell *matHeaderCellDef> Cantidad </th>
+        <td class="td-ch" mat-cell *matCellDef="let row"><li *ngFor="let producto of row.productos">{{producto.cantidad}}</li> </td>
+      </ng-container>
+      <ng-container matColumnDef="calle_numero">
+        <th class="td-g" mat-header-cell *matHeaderCellDef> Calle y Número (Ext/Int) </th>
+        <td class="td-g" mat-cell *matCellDef="let row" > {{row.direccion_envio.calle}}, {{row.direccion_envio.numero}}/{{row.direccion_envio.numero_interior}} </td>
+      </ng-container>
+      <ng-container  matColumnDef="municipio">
+        <th class="td-g" mat-header-cell *matHeaderCellDef> Colonia y Municipio </th>
+        <td class="td-g" mat-cell  *matCellDef="let row"> {{row.direccion_envio.colonia}},{{row.direccion_envio.municipio}} </td>
+      </ng-container>
+      <ng-container matColumnDef="ciudad_estado">
+        <th class="td-g" mat-header-cell *matHeaderCellDef> Ciudad y Estado  </th>
+        <td class="td-g" mat-cell *matCellDef="let row"> {{row.direccion_envio.ciudad}}, {{row.direccion_envio.estado}} </td>
+      </ng-container>
+      <ng-container matColumnDef="c.p">
+        <th class="td-ch" mat-header-cell *matHeaderCellDef> C.P. </th>
+        <td class="td-ch" mat-cell *matCellDef="let row"> {{row.direccion_envio.codigo_postal}} </td>
+      </ng-container>
+      <ng-container matColumnDef="pais">
+        <th class="td-ch" mat-header-cell *matHeaderCellDef> País  </th>
+        <td class="td-ch" mat-cell *matCellDef="let row"> {{row.direccion_envio.codigo_pais}} </td>
+      </ng-container>
+      <ng-container matColumnDef="acciones">
+        <th class="td-ch" mat-header-cell *matHeaderCellDef> Acciones </th>
+        <td class="td-ch" mat-cell *matCellDef="let row"> 
+          <button mat-icon-button (click)="enviar(row)" color="primary">
+            <mat-icon>local_shipping</mat-icon>
+          </button></td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+      </tr>
+    </table>
+  
+    <mat-paginator class="fondo-tablas" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+  </div>

@@ -1,0 +1,164 @@
+<h2 mat-dialog-title>Confirmar Compra</h2>
+<mat-dialog-content class="mat-typography">
+  <mat-horizontal-stepper linear=true #stepper>
+    <mat-step [stepControl]="nombre">
+      <form [formGroup]="nombre">
+        <ng-template matStepLabel>Receptor del paquete</ng-template>
+        <mat-form-field class="full-width" color="accent">
+          <input matInput placeholder="Nombre(s)" formControlName="nombres" required>
+        </mat-form-field>
+        <mat-form-field class="full-width" color="accent">
+            <input matInput placeholder="Apellido(s)" formControlName="apellidos" required>
+          </mat-form-field>
+        <div>
+          <button mat-button matStepperNext [disabled]="nombre.invalid">Siguiente</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="direccion">
+      <form [formGroup]="direccion">
+        <ng-template matStepLabel>Dirección de Envío</ng-template>
+        <mat-form-field color="accent">
+          <input matInput (input)="buscarCPenvio()" placeholder="Código Postal" maxlength="5" formControlName="codigo_postal" required>
+          <mat-hint><a href="https://micodigopostal.org/" target=”_blank”>No sé mi código</a></mat-hint>
+        </mat-form-field>
+        <mat-form-field color="accent">
+          <mat-select matInput type="text" placeholder="País" formControlName="codigo_pais" required>
+            <mat-option value="MX">México</mat-option>
+          </mat-select>
+        </mat-form-field >
+        <mat-form-field color="accent">
+          <input matInput type="text" placeholder="Estado" [value]="estado" formControlName="estado" required>
+        </mat-form-field>
+        <mat-form-field color="accent">
+          <input matInput type="text" placeholder="Municipio" [value]="municipio" formControlName="municipio" required>
+        </mat-form-field>
+        <mat-form-field color="accent">
+          <mat-select matInput type="text" placeholder="Colonia" formControlName="colonia" required>
+            <mat-option *ngFor="let colonia of colonias" [value]="colonia">{{colonia}}</mat-option>                     
+        </mat-select>
+        </mat-form-field>
+        <mat-form-field color="accent">
+          <input matInput type="text" placeholder="Calle" formControlName="calle" required>
+        </mat-form-field>
+        <mat-form-field color="accent">
+          <input matInput type="number" placeholder="Número Exterior" formControlName="numero" required>
+        </mat-form-field>
+        <mat-form-field color="accent">
+          <input matInput type="text" placeholder="Número Interior" formControlName="numero_interior">
+        </mat-form-field>
+        <mat-form-field color="accent">
+          <input matInput type="number" placeholder="Teléfono" formControlName="telefono" required >
+          <mat-icon matSuffix>phone</mat-icon>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Regresar</button>
+          <button mat-button matStepperNext [disabled]="direccion.invalid">Siguiente</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="envio">
+      <form [formGroup]="envio">
+        <ng-template matStepLabel>Elige el tipo de envío deseado</ng-template>
+        <mat-form-field color="accent">
+          <mat-select (selectionChange)="cotizar()" matInput type="text" placeholder="Paquetería" formControlName="paqueteria" required>
+            <mat-option value="estafeta">Estafeta</mat-option>
+            <mat-option value="dhl">DHL</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-spinner color="accent" *ngIf="cargando" diameter="30"></mat-spinner>
+        <br>
+        <mat-radio-group color="accent" class="example-radio-group" formControlName="envioSeleccionado" name="radio">
+          <mat-radio-button class="example-radio-button" *ngFor="let opcion of envios" [value]="opcion">
+            {{opcion.servicio}} <em>({{opcion.estimado_entrega}}) </em> <b> {{opcion.precio_total | currency}}</b>
+          </mat-radio-button>
+        </mat-radio-group>
+        <div *ngIf="envioSeleccionado!=undefined"class="example-selected-value">Envio Seleccionado: {{envioSeleccionado.servicio}}</div>
+        <div><b>NOTA: Para compras superiores a diez unidades, el envío se realizará en un periodo máximo de 3 días 
+          hábiles posteriores a la fecha de compra
+        </b></div>
+        <div>
+          <button mat-button matStepperPrevious (click)="limpiarEnvios()">Regresar</button>
+          <button mat-button matStepperNext [disabled] = "envio.invalid">Siguiente</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="factura" [optional]="!factura.get('requiereFactura').value">
+        <form [formGroup]="factura">
+          <ng-template matStepLabel>Factura</ng-template>
+              <mat-slide-toggle formControlName="requiereFactura" color="primary" 
+              (click)="cargarDatos()" #fact>
+                Requiere Factura?
+              </mat-slide-toggle>
+              <div *ngIf="factura.get('requiereFactura').value">
+                <h2>Datos para factura</h2>
+                <mat-form-field color="accent">
+                    <input matInput type="text" placeholder="Nombre o Razón Social" formControlName="razon_social" required>
+                </mat-form-field>
+                <mat-form-field color="accent">
+                    <input matInput type="text" placeholder="RFC" formControlName="rfc" required>
+                </mat-form-field>
+                <mat-form-field color="accent">
+                    <input matInput type="email" placeholder="Email" formControlName="email" required>
+                </mat-form-field>
+                <mat-form-field color="accent">
+                  <input matInput type="tel" placeholder="Teléfono" formControlName="telefono" >
+                  <mat-icon matSuffix>phone</mat-icon>
+                </mat-form-field>
+                <h3>Domicilio Fiscal</h3>
+                <mat-form-field color="accent">
+                  <input matInput (input)="buscarCPfactura()" placeholder="Código Postal" maxlength="5" formControlName="codigo_postal" required>
+                  <mat-hint><a href="https://micodigopostal.org/" target=”_blank”>No sé mi código</a></mat-hint>
+                </mat-form-field>
+                <mat-form-field color="accent">
+                  <mat-select matInput type="text" placeholder="País" formControlName="codigo_pais" required>
+                    <mat-option value="MX">México</mat-option>
+                  </mat-select>
+                </mat-form-field >
+                <mat-form-field color="accent">
+                  <input matInput type="text" placeholder="Estado" [value]="estadoFactura" formControlName="estado" required>
+                </mat-form-field>
+                <mat-form-field color="accent">
+                  <input matInput type="text" placeholder="Municipio" [value]="municipioFactura" formControlName="municipio" required>
+                </mat-form-field>
+                <mat-form-field color="accent">
+                  <mat-select matInput type="text" placeholder="Colonia" formControlName="colonia" required>
+                    <mat-option *ngFor="let colonia of coloniasFactura" [value]="colonia">{{colonia}}</mat-option>                     
+                </mat-select>
+                </mat-form-field>
+                <mat-form-field color="accent">
+                  <input matInput type="text" placeholder="Calle" formControlName="calle" required>
+                </mat-form-field>
+                <mat-form-field color="accent">
+                  <input matInput type="number" placeholder="Número Exterior" formControlName="numero" required>
+                </mat-form-field>
+                <mat-form-field color="accent">
+                  <input matInput type="text" placeholder="Número Interior" formControlName="numero_interior">
+                </mat-form-field>
+                  
+            </div>
+
+          <div>
+            <button mat-button matStepperPrevious>Regresar</button>
+            <button mat-button matStepperNext [disabled]="factura.get('requiereFactura').value && factura.invalid">Siguiente</button>
+          </div>
+        </form>
+      </mat-step>
+    <mat-step>
+      <ng-template matStepperIcon="done" matStepLabel>Listo</ng-template>
+      <h4>Artículos:</h4>
+      <ul>
+        <li *ngFor = "let producto of data">{{producto.producto.nombre_producto}}  ({{producto.cantidad}})</li>
+      </ul>
+      <h4>Envío: </h4>
+      <p>{{envio.get("envioSeleccionado").value.servicio}} ,
+      {{envio.get("envioSeleccionado").value.paqueteria}}</p>
+      Estás seguro de realizar la compra? 
+      <div>
+        <button mat-button matStepperPrevious>Regresar</button>
+        <button mat-button [disabled]="nombre.invalid || direccion.invalid || cargando" (click)="comprar()">Confirmar</button>
+        <mat-spinner color="primary" *ngIf="cargando" diameter="30"></mat-spinner>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
+  </mat-dialog-content>

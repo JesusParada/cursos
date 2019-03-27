@@ -1,0 +1,12 @@
+   img{
+       align-content: center;
+       display:block;
+       margin:auto;
+       width: 60%;
+   }
+
+   .carrusel{
+       width: 90%;
+       display: block;
+       margin: auto;
+   }

@@ -1,0 +1,12 @@
+table {
+    width: 100%;
+  }
+  
+  td, th {
+    width: 15%;
+  }
+  .btn{
+    float: right;
+    margin-top: 10px;
+  }
+  

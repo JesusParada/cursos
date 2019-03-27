@@ -1,0 +1,22 @@
+.comentarios{
+    flex-direction: row;
+    width: 100%;
+}
+
+.zona-comentarios{
+    width: 69%;
+    height: 80%;
+    overflow: auto;
+    margin: 2px;
+    float: right;
+}
+
+.zona-nuevo-comentario{
+    width: 30%;
+    margin: 2px;
+    float: left;
+}
+
+button{
+    margin: 2px;
+}

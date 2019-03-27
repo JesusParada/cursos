@@ -1,0 +1,56 @@
+.example-card {
+    width: 100%;
+    align-content: center;
+}
+
+.example-header-image {
+  background-image: url("../../../../assets/imagenes/logo.jpg");
+  background-size: cover;
+}
+
+.img{
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+}
+.img img{
+  width: 40%;
+  height: 100%;
+  margin: 0 auto;
+}
+
+.imagen *{
+  width: 50%;
+  height: 50%;
+  display: block;
+  margin: auto;
+}
+
+.video *{
+  width: 90%;
+  height: 90%;
+  display: block;
+  margin: auto;
+  position: relative;
+}
+
+mat-card-content{
+  font-size: 1em;
+}
+mat-card-title{
+  font-size: 1.6em !important;
+}
+mat-card-subtitle{
+  font-size: 1.1em !important;
+}
+.separador{
+  height: 15px;
+}
+
+.precio{
+  font-size: 2em;
+}
+
+button{
+  margin: 2px;
+}

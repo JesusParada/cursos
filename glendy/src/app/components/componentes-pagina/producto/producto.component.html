@@ -1,0 +1,25 @@
+<mat-card class="example-card fondo-tarjetas">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>{{producto.nombre_producto}}</mat-card-title>
+      <mat-card-subtitle>{{producto.tipo_producto}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <div class="img">
+            <img [src]="'http://localhost:3000/' + producto.imagenes[0]" >
+        </div>
+      <p>{{producto.descripcion}} incluye:</p>
+      <ul>
+        <li *ngFor = "let item of producto.contenido">{{item}}</li>
+      </ul>
+    </mat-card-content>
+    <div>
+      <label >Precio : <strong class="precio">$ {{producto.precio_venta}}  </strong></label>
+      <mat-card-actions align="end">
+          <mat-spinner *ngIf="cargando" diameter="30"></mat-spinner>
+        <button mat-raised-button (click)="comprar()" color="primary" >Comprar Ahora</button>
+        <button mat-stroked-button (click)="agregarAlCarrito()" color="primary">Agregar al carrito</button>
+      </mat-card-actions>
+    </div>
+  </mat-card>
+  <div class="separador"></div>

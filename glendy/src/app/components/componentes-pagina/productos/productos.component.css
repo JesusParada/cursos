@@ -1,0 +1,23 @@
+.example-header-image {
+    background-image: url("../../../../assets/imagenes/logo.jpg");
+    background-size: cover;
+  }
+  .separador{
+    height: 15px;
+  }
+
+  mat-card-title{
+    font-size: 1.6em !important;
+  }
+  mat-card-subtitle{
+    font-size: 1.1em !important;
+  }
+
+  .fondo{
+    align-content: center;
+    background-color: #bbdefb !important;
+  }
+  .btn{
+    background-color: #4caf50;
+    color: #fff;
+  }

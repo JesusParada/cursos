@@ -1,0 +1,39 @@
+<div class = "contenedor-grande-centrado">
+  <form class="example-form" [formGroup] = "datos_usuario">
+    <mat-form-field class="width-100">
+        <mat-select placeholder="Tipo de usuario" formControlName="tipo">
+          <mat-option value="Cliente">Cliente</mat-option>
+          <mat-option value="Empleado">Empleado</mat-option>
+          <mat-option value="Admin">Administrador</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="width-100">
+      <input matInput placeholder="Nombre de Usuario" formControlName = "nombre_usuario">
+    </mat-form-field>
+    
+    <mat-form-field class="width-100">
+      <input matInput type="email" placeholder="Correo" formControlName = "email">
+    </mat-form-field>
+    
+    <mat-form-field class="width-100">
+      <input matInput placeholder="Contraseña" formControlName = "password"
+      [type]="hide ? 'password' : 'text'">
+      <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </mat-form-field>
+    
+    <mat-form-field class="width-100">
+      <input matInput placeholder="Confirma tu Contraseña" formControlName = "confirm_password"
+      [type]="hide ? 'password' : 'text'">
+      <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </mat-form-field>
+    
+    <mat-error *ngIf="datos_usuario.invalid || !validadorPassword()">{{getRegisterErrorMessage()}}</mat-error>
+    
+  </form>
+  <button mat-raised-button (click)="reset()" color="warn">Cancelar </button>
+  <button mat-raised-button (click)="registro()"  [disabled]="datos_usuario.invalid || !validadorPassword()"
+    color="primary">Guardar
+  </button>
+
+  </div>

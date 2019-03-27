@@ -1,0 +1,47 @@
+<mat-toolbar class="fondo-bar" color="primary">
+  <button
+  type="button"
+  aria-label="Toggle sidenav"
+  mat-icon-button
+  (click)="drawer.toggle()"
+  *ngIf="isHandset$ | async">
+  <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+  </button>
+  <span class="titulo">Glendy</span>
+  <span class="example-spacer"></span>
+  <span *ngIf="this.auth.isLoggedIn()" class="nombre">{{this.auth.getUserDetails().name}}</span>
+  <button mat-icon-button [matMenuTriggerFor]="menu"><mat-icon >person</mat-icon></button>
+    <mat-menu #menu="matMenu">
+      <button (click)="ingresa()" *ngIf="!datosUsuario()" mat-menu-item>Ingresa</button>
+      <button (click)="cierraSesion()" *ngIf="datosUsuario()" mat-menu-item>Cierra sesión</button>
+    </mat-menu>
+  <button mat-icon-button class="example-button-row" routerLink= "/carrito" [disabled]="!this.auth.isLoggedIn()"><mat-icon>shopping_cart</mat-icon></button>
+</mat-toolbar>
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav
+    #drawer
+    class="sidenav fondo-menu"
+    fixedInViewport="false"
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [opened]="!(isHandset$ | async)">
+      <mat-nav-list>
+        <a mat-list-item id="glendy" routerLink="/glendy" ><mat-icon>child_care</mat-icon>  ¿Qué es Glendy?</a>
+        <a mat-list-item routerLink ="/nosotros"><mat-icon>group</mat-icon><span>Nosotros</span> </a>
+        <a mat-list-item routerLink="/comunidad"><mat-icon>message</mat-icon>  Comunidad</a>
+        <a mat-list-item routerLink="/productos"><mat-icon>card_giftcard</mat-icon>  Productos</a>
+        <a mat-list-item routerLink="/sistema" *ngIf="authService.isAdmin()"><mat-icon>assessment</mat-icon>  Sistema</a>
+      </mat-nav-list>
+     <!-- <img class="imagen-menu"src="assets/imagenes/logo.jpg" alt="" srcset="">-->
+    </mat-sidenav>
+  <mat-sidenav-content class="tema-verde">
+    <!-- Aqui va el contenido (ng-content)-->
+      
+        <ng-content></ng-content>
+      
+    <div id="margen-inferior"></div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+
+

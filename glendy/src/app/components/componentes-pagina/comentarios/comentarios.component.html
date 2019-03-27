@@ -1,0 +1,23 @@
+<mat-card class="example-card fondo-comentarios">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>{{comentario.usuario.nombre_usuario}}</mat-card-title>
+      <mat-card-subtitle>{{comentario.tipo}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <p>
+        {{comentario.texto}}
+      </p>
+      <mat-card *ngIf="comentario.respuesta != undefined && comentario.respuesta != ''">
+          <mat-card-header>
+            <mat-card-title>Soporte Glendy</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <p>
+              {{comentario.respuesta}}
+            </p>
+          </mat-card-content>
+        </mat-card>
+    </mat-card-content>
+    <mat-card-footer class="texto-ch" align="end">{{fecha}}</mat-card-footer>
+  </mat-card>
